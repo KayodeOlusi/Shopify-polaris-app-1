@@ -1,5 +1,6 @@
 import { redirect, Form, useLoaderData } from "react-router";
 import { login } from "../../shopify.server";
+import { loginErrorMessage } from "./error.server";
 import styles from "./styles.module.css";
 
 export const loader = async ({ request }) => {
@@ -10,6 +11,12 @@ export const loader = async ({ request }) => {
   }
 
   return { showForm: Boolean(login) };
+};
+
+export const action = async ({ request }) => {
+  const errors = loginErrorMessage(await login(request));
+
+  return { errors };
 };
 
 export default function App() {
@@ -23,7 +30,7 @@ export default function App() {
           A tagline about [your app] that describes your value proposition.
         </p>
         {showForm && (
-          <Form className={styles.form} method="post" action="/auth/login">
+          <Form className={styles.form} method="post">
             <label className={styles.label}>
               <span>Shop domain</span>
               <input className={styles.input} type="text" name="shop" />
