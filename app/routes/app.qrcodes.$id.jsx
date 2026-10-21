@@ -181,7 +181,7 @@ export default function QRCodeForm() {
                 label="Title"
                 details="Only store staff can see this title"
                 error={errors.title}
-                autoComplete="off"
+                autocomplete="off"
                 name="title"
                 value={formState.title}
                 onInput={(e) =>
@@ -217,7 +217,6 @@ export default function QRCodeForm() {
                 </s-select>
                 {initialFormState.destinationUrl ? (
                   <s-link
-                    variant="plain"
                     href={initialFormState.destinationUrl}
                     target="_blank"
                   >
@@ -232,7 +231,6 @@ export default function QRCodeForm() {
                     <s-link
                       onClick={removeProduct}
                       accessibilityLabel="Remove the product from this QR Code"
-                      variant="tertiary"
                       tone="neutral"
                     >
                       Clear
