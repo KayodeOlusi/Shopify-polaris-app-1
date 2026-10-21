@@ -16,6 +16,7 @@ const shopify = shopifyApp({
   authPathPrefix: "/auth",
   sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
+  polarisUrl: "https://cdn.shopify.com/shopifycloud/polaris-2.0-rc.js",
   future: {
     expiringOfflineAccessTokens: true,
   },
