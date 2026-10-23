@@ -128,8 +128,9 @@ export default function QRCodeForm() {
     submit(data, { method: "post" });
   }
 
-  function handleDelete(e) {
+  async function handleDelete(e) {
     e.preventDefault();
+    await window.shopify.saveBar.hide("qr-code-form");
     submit(
       { action: "delete", metaobjectId: initialFormState.id },
       { method: "post" },
