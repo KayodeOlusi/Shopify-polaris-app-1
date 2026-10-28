@@ -1,0 +1,193 @@
+/*
+ * QR Studio app styles.
+ *
+ * The --qr-* tokens below were copied by hand from the Polaris web components
+ * bundle the app loads (https://cdn.shopify.com/shopifycloud/polaris.js,
+ * Polaris 1.1.0), by reading the --p-* fallback values in DevTools, so our
+ * custom blocks match the Polaris cards and text around them. They are plain
+ * copies, not references, so update them if Polaris changes its look.
+ */
+:root {
+  /* Brand */
+  --qr-brand: #0b6e4f;
+  --qr-brand-hover: #095c42;
+  --qr-brand-subtle: #e3f4ec;
+  --qr-brand-text-on-fill: #ffffff;
+
+  /* Copied from Polaris 1 (--p-border-radius-*) */
+  --qr-radius-container: 0.75rem; /* --p-border-radius-container */
+  --qr-radius-preview: 0.25rem; /* --p-border-radius-preview */
+  --qr-radius-full: 624.9375rem; /* --p-border-radius-full */
+
+  /* Copied from Polaris 1 (--p-shadow-container) */
+  --qr-shadow-card: 0 0.3125rem 0.3125rem -0.15625rem rgba(0, 0, 0, 0.03),
+    0 0.1875rem 0.1875rem -0.09375rem #00000005,
+    0 0.125rem 0.125rem -0.0625rem #00000005,
+    0 0.0625rem 0.0625rem -0.03125rem #00000008,
+    0 0.03125rem 0.03125rem 0 #0000000a, 0 0 0 0.0625rem #0000000f;
+
+  /* Copied from Polaris 1 (--p-space-*) */
+  --qr-space-200: 0.5rem;
+  --qr-space-300: 0.75rem;
+  --qr-space-400: 1rem;
+  --qr-space-500: 1.25rem;
+  --qr-space-600: 1.5rem;
+
+  /* Copied from Polaris 1 (--p-color-*) */
+  --qr-color-text: rgba(48, 48, 48, 1); /* --p-color-text */
+  --qr-color-text-secondary: rgba(97, 97, 97, 1); /* --p-color-text-secondary */
+  --qr-color-text-success: rgba(1, 75, 64, 1); /* --p-color-text-success */
+  --qr-color-text-caution: rgba(79, 71, 0, 1); /* --p-color-text-caution */
+  --qr-color-bg: rgba(241, 241, 241, 1); /* --p-color-bg */
+  --qr-color-bg-surface: rgba(255, 255, 255, 1); /* --p-color-bg-surface */
+  --qr-color-bg-surface-hover: rgba(247, 247, 247, 1); /* --p-color-bg-surface-hover */
+  --qr-color-border: rgba(227, 227, 227, 1); /* --p-color-border */
+  --qr-color-success-subtle: rgba(205, 254, 212, 1); /* --p-color-bg-surface-success */
+  --qr-color-caution-subtle: rgba(255, 248, 219, 1); /* --p-color-bg-surface-caution */
+
+  /* Copied from Polaris 1 (--p-font-family-sans) */
+  --qr-font-family: "Inter", -apple-system, BlinkMacSystemFont, "San Francisco",
+    "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* ---------- Shared: summary cards ---------- */
+
+.stat-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--qr-space-400);
+  margin-block-end: var(--qr-space-400);
+}
+
+.stat-card {
+  background: var(--qr-color-bg-surface);
+  border-radius: var(--qr-radius-container);
+  box-shadow: var(--qr-shadow-card);
+  padding: var(--qr-space-400);
+  font-family: var(--qr-font-family);
+  color: var(--qr-color-text);
+}
+
+.stat-card__label {
+  font-size: 0.8125rem;
+  font-weight: 550;
+  color: var(--qr-color-text-secondary);
+  margin: 0 0 var(--qr-space-200);
+}
+
+.stat-card__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.stat-card__hint {
+  font-size: 0.75rem;
+  color: var(--qr-color-text-secondary);
+  margin: var(--qr-space-200) 0 0;
+}
+
+.stat-card--brand {
+  border-top: 3px solid var(--qr-brand);
+}
+
+/* ---------- Shared: status pill ---------- */
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: var(--qr-radius-full);
+  font-family: var(--qr-font-family);
+  font-size: 0.75rem;
+  font-weight: 550;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.status-pill::before {
+  content: "";
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-pill--scanned {
+  background: var(--qr-color-success-subtle);
+  color: var(--qr-color-text-success);
+}
+
+.status-pill--idle {
+  background: var(--qr-color-caution-subtle);
+  color: var(--qr-color-text-caution);
+}
+
+/* ---------- QR codes list ---------- */
+
+.qr-list-page {
+  font-family: var(--qr-font-family);
+  /* Leave room for the sticky action bar */
+  padding-bottom: 72px;
+}
+
+/* Brand colour on primary buttons */
+.qr-list-page s-button[variant="primary"],
+.qr-sticky-bar s-button[variant="primary"] {
+  background-color: var(--qr-brand);
+  border-radius: var(--qr-radius-preview);
+  color: var(--qr-brand-text-on-fill);
+}
+
+/* Highlight table rows on hover */
+.qr-list-page s-table-row:hover {
+  background-color: var(--qr-color-bg-surface-hover);
+  cursor: pointer;
+}
+
+.qr-list-page s-table-cell {
+  vertical-align: middle;
+}
+
+.qr-filter-bar {
+  margin-block-end: var(--qr-space-400);
+}
+
+.qr-no-results {
+  text-align: center;
+  padding: var(--qr-space-600) var(--qr-space-400);
+}
+
+.qr-sticky-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--qr-space-400);
+  padding: var(--qr-space-300) var(--qr-space-600);
+  background: var(--qr-color-bg-surface);
+  border-top: 1px solid var(--qr-color-border);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.06);
+  font-family: var(--qr-font-family);
+  color: var(--qr-color-text);
+  font-size: 0.875rem;
+}
+
+.qr-sticky-bar__count {
+  font-weight: 550;
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
