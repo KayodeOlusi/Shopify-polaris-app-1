@@ -139,7 +139,9 @@ export default function Settings() {
       <form onSubmit={handleSave} onReset={handleDiscard}>
         <s-page heading="Settings">
           <div className="settings-header">
-            <h2 className="settings-header__title">QR Studio</h2>
+            <h2 className="settings-header__title">
+              {settings.brandLabel || "QR Studio"}
+            </h2>
             <p className="settings-header__description">
               Choose how new QR codes behave, how they look when printed, and
               how your QR code list is shown.

@@ -28,7 +28,7 @@ The app is still on Polaris 1: unversioned `polaris.js`, which serves 1.1.0, wit
 | Customisation | Where | Why it's realistic |
 |---|---|---|
 | "Settings" replaces "Additional page" in the app nav, and the template's `app.additional.jsx` is removed | `app/routes/app.jsx` | The template page gets replaced by the app's first real secondary page. |
-| Branded header (brand colour background, app name, short description) above the Polaris content | `.settings-header` | Apps add their branding to settings or "home" pages. |
+| Branded header (brand colour background, the shop's saved brand label or "QR Studio" if it's empty, short description) above the Polaris content | `.settings-header` | Apps add their branding to settings or "home" pages, and merchants expect to see their own name once they've set one. |
 | Custom tab bar (General, Appearance, Advanced) built from our own `<button role="tab">` elements and CSS | `app/components/SettingsTabs.jsx`, `.settings-tabs*` | Polaris 1 web components have no tabs component, so teams build their own. |
 | Settings form with validation: default scan destination (`s-select`), brand label (required, 40 characters max, with a counter), QR foreground and background colours, "Show product images in the list" (`s-switch`), and the default list sort | form + `validateSettings` | This is a typical settings page. Validation is on the server, and the first failing field's tab is opened. |
 | `ColorInput`: a native `<input type="color">` next to a hex `s-text-field`, kept in sync | `app/components/ColorInput.jsx`, `.color-input*` | A common lightweight colour control, used instead of the heavier colour field. |
