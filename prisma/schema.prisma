@@ -32,3 +32,15 @@ model Session {
   refreshToken        String?
   refreshTokenExpires DateTime?
 }
+
+model ShopSettings {
+  shop               String   @id
+  defaultDestination String   @default("product")
+  brandLabel         String   @default("QR Studio")
+  foregroundColor    String   @default("#000000")
+  backgroundColor    String   @default("#ffffff")
+  showProductImages  Boolean  @default(true)
+  defaultSort        String   @default("newest")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}

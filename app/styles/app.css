@@ -135,7 +135,8 @@
 
 /* Brand colour on primary buttons */
 .qr-list-page s-button[variant="primary"],
-.qr-sticky-bar s-button[variant="primary"] {
+.qr-sticky-bar s-button[variant="primary"],
+.settings-page s-button[variant="primary"] {
   background-color: var(--qr-brand);
   border-radius: var(--qr-radius-preview);
   color: var(--qr-brand-text-on-fill);
@@ -190,4 +191,84 @@
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* ---------- Settings ---------- */
+
+.settings-page {
+  font-family: var(--qr-font-family);
+}
+
+.settings-header {
+  background: var(--qr-brand);
+  color: var(--qr-brand-text-on-fill);
+  border-radius: var(--qr-radius-container);
+  box-shadow: var(--qr-shadow-card);
+  padding: var(--qr-space-500) var(--qr-space-600);
+  margin-block-end: var(--qr-space-400);
+}
+
+.settings-header__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.settings-header__description {
+  margin: var(--qr-space-200) 0 0;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.settings-tabs {
+  display: flex;
+  gap: var(--qr-space-200);
+  border-bottom: 1px solid var(--qr-color-border);
+  margin-block-end: var(--qr-space-400);
+}
+
+.settings-tabs__tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: var(--qr-space-200) var(--qr-space-300);
+  font-family: var(--qr-font-family);
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: var(--qr-color-text-secondary);
+  cursor: pointer;
+}
+
+.settings-tabs__tab:hover {
+  color: var(--qr-color-text);
+}
+
+.settings-tabs__tab[aria-selected="true"] {
+  color: var(--qr-brand);
+  border-bottom-color: var(--qr-brand);
+}
+
+.settings-tabs__tab:focus-visible {
+  outline: 2px solid var(--qr-brand);
+  outline-offset: 2px;
+  border-radius: var(--qr-radius-preview);
+}
+
+.color-input {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--qr-space-300);
+  align-items: end;
+}
+
+.color-input__swatch {
+  inline-size: 44px;
+  block-size: 32px;
+  padding: 2px;
+  border: 1px solid var(--qr-color-border);
+  border-radius: var(--qr-radius-preview);
+  background: var(--qr-color-bg-surface);
+  cursor: pointer;
 }

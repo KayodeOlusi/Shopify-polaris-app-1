@@ -4,19 +4,21 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 
 import { authenticate } from "../shopify.server";
 import { deleteQRCode, getQRCodes } from "../models/QRCode.server";
+import { getSettings } from "../models/Settings.server";
 import { StatCard } from "../components/StatCard";
 import { StatusPill } from "../components/StatusPill";
 
-const DEFAULT_SORT = "newest";
-
 export async function loader({ request }) {
   const { admin, session } = await authenticate.admin(request);
-  const qrCodes = await getQRCodes(admin.graphql, session.shop);
+  const [qrCodes, settings] = await Promise.all([
+    getQRCodes(admin.graphql, session.shop),
+    getSettings(session.shop),
+  ]);
 
   return {
     qrCodes,
-    showProductImages: true,
-    defaultSort: DEFAULT_SORT,
+    showProductImages: settings.showProductImages,
+    defaultSort: settings.defaultSort,
   };
 }
 
