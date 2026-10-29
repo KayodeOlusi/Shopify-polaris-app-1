@@ -1,11 +1,12 @@
-// Summary card styled to sit next to Polaris sections. Uses the tokens copied
-// into app/styles/app.css because Polaris doesn't ship a "metric" card.
-export function StatCard({ label, value, hint = null, highlight = false }) {
+// Summary card built from Polaris web components so it follows the admin's
+// styling. A top-level s-section draws its own card.
+export function StatCard({ label, value, hint = null }) {
   return (
-    <div className={highlight ? "stat-card stat-card--brand" : "stat-card"}>
-      <p className="stat-card__label">{label}</p>
-      <p className="stat-card__value">{value}</p>
-      {hint ? <p className="stat-card__hint">{hint}</p> : null}
-    </div>
+    <s-section heading={label}>
+      <s-stack gap="small-200">
+        <s-text type="strong">{value}</s-text>
+        {hint ? <s-text color="subdued">{hint}</s-text> : null}
+      </s-stack>
+    </s-section>
   );
 }

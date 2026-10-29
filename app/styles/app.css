@@ -50,48 +50,6 @@
     "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* ---------- Shared: summary cards ---------- */
-
-.stat-card-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--qr-space-400);
-  margin-block-end: var(--qr-space-400);
-}
-
-.stat-card {
-  background: var(--qr-color-bg-surface);
-  border-radius: var(--qr-radius-container);
-  box-shadow: var(--qr-shadow-card);
-  padding: var(--qr-space-400);
-  font-family: var(--qr-font-family);
-  color: var(--qr-color-text);
-}
-
-.stat-card__label {
-  font-size: 0.8125rem;
-  font-weight: 550;
-  color: var(--qr-color-text-secondary);
-  margin: 0 0 var(--qr-space-200);
-}
-
-.stat-card__value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.stat-card__hint {
-  font-size: 0.75rem;
-  color: var(--qr-color-text-secondary);
-  margin: var(--qr-space-200) 0 0;
-}
-
-.stat-card--brand {
-  border-top: 3px solid var(--qr-brand);
-}
-
 /* ---------- Shared: status pill ---------- */
 
 .status-pill {

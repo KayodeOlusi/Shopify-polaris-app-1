@@ -345,27 +345,29 @@ export default function Index() {
           <EmptyQRCodeState />
         ) : (
           <>
-            <div className="stat-card-row">
-              <StatCard
-                label="Total QR codes"
-                value={qrCodes.length}
-                highlight
-              />
-              <StatCard
-                label="Total scans"
-                value={totalScans.toLocaleString()}
-                hint="Across all codes"
-              />
-              <StatCard
-                label="Codes with no scans"
-                value={unscannedCount}
-                hint={
-                  unscannedCount > 0
-                    ? "Check where these codes are printed"
-                    : "Every code has been scanned"
-                }
-              />
-            </div>
+            <s-query-container>
+              <s-grid
+                gridTemplateColumns="@container (inline-size > 600px) 1fr 1fr 1fr, 1fr"
+                gap="base"
+                paddingBlockEnd="base"
+              >
+                <StatCard label="Total QR codes" value={qrCodes.length} />
+                <StatCard
+                  label="Total scans"
+                  value={totalScans.toLocaleString()}
+                  hint="Across all codes"
+                />
+                <StatCard
+                  label="Codes with no scans"
+                  value={unscannedCount}
+                  hint={
+                    unscannedCount > 0
+                      ? "Check where these codes are printed"
+                      : "Every code has been scanned"
+                  }
+                />
+              </s-grid>
+            </s-query-container>
             <FilterBar
               filters={filters}
               onChange={updateFilters}
