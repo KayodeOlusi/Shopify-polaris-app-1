@@ -173,6 +173,46 @@ export default function Lab() {
           </s-grid>
         </s-section>
 
+        {/* Same as the row above, made responsive like the list's summary cards */}
+        <s-section>
+          <s-query-container>
+            <s-grid
+              gridTemplateColumns="@container (inline-size > 600px) 2fr 1fr 1fr auto, 1fr"
+              gap="base"
+              alignItems="end"
+            >
+              <s-search-field
+                label="Search QR codes"
+                labelAccessibilityVisibility="exclusive"
+                placeholder="Search by title"
+                value={filters.query}
+                onInput={(e) => updateFilters({ query: e.currentTarget.value })}
+              />
+              <s-select
+                label="Destination"
+                value={filters.destination}
+                onInput={(e) => updateFilters({ destination: e.currentTarget.value })}
+              >
+                <s-option value="all">All destinations</s-option>
+                <s-option value="product">Product page</s-option>
+                <s-option value="cart">Checkout</s-option>
+              </s-select>
+              <s-select
+                label="Sort by"
+                icon="sort"
+                value={filters.sort}
+                onInput={(e) => updateFilters({ sort: e.currentTarget.value })}
+              >
+                <s-option value="newest">Newest</s-option>
+                <s-option value="most-scans">Most scans</s-option>
+              </s-select>
+              <s-button disabled={!hasActiveFilters} onClick={clearFilters}>
+                Clear filters
+              </s-button>
+            </s-grid>
+          </s-query-container>
+        </s-section>
+
         <s-section heading="Menu, modal and popover">
           <s-stack direction="inline" gap="base">
             <s-button
