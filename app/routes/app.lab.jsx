@@ -73,6 +73,8 @@ export default function Lab() {
     filters.destination !== "all" ||
     filters.sort !== defaultFilters.sort;
 
+  const [pendingDelete, setPendingDelete] = useState(null);
+
   const saveBarRef = useRef(null);
   const modalRef = useRef(null);
 
@@ -212,7 +214,11 @@ export default function Lab() {
             heading="Delete sample item?"
             size="small"
           >
-            <s-paragraph>Nothing is deleted. This is a sample.</s-paragraph>
+            <s-paragraph>
+              {pendingDelete
+                ? `"${pendingDelete.title}" isn't really deleted. This is a sample.`
+                : "Nothing is deleted. This is a sample."}
+            </s-paragraph>
             <s-button
               slot="primary-action"
               variant="primary"
@@ -250,6 +256,7 @@ export default function Lab() {
               <s-table-header>Product</s-table-header>
               <s-table-header>Date created</s-table-header>
               <s-table-header format="numeric">Scans</s-table-header>
+              <s-table-header>Actions</s-table-header>
             </s-table-header-row>
             <s-table-body>
               {SAMPLE_ROWS.map((row) => (
@@ -279,6 +286,38 @@ export default function Lab() {
                     {new Date(row.created).toDateString()}
                   </s-table-cell>
                   <s-table-cell>{row.scans}</s-table-cell>
+                  <s-table-cell>
+                    <s-button
+                      commandFor={`lab-actions-${row.id}`}
+                      icon="menu-horizontal"
+                      variant="tertiary"
+                      accessibilityLabel={`Actions for ${row.title}`}
+                    />
+                    <s-menu
+                      id={`lab-actions-${row.id}`}
+                      accessibilityLabel={`Actions for ${row.title}`}
+                    >
+                      <s-button icon="edit" href="/app/lab">
+                        Edit
+                      </s-button>
+                      <s-button
+                        icon="download"
+                        href={thumbnail(row.color)}
+                        download={`sample-${row.id}.svg`}
+                      >
+                        Download
+                      </s-button>
+                      <s-button
+                        icon="delete"
+                        tone="critical"
+                        commandFor="lab-modal"
+                        command="--show"
+                        onClick={() => setPendingDelete(row)}
+                      >
+                        Delete
+                      </s-button>
+                    </s-menu>
+                  </s-table-cell>
                 </s-table-row>
               ))}
             </s-table-body>
