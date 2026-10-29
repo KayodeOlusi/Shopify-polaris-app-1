@@ -165,7 +165,10 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  /* Sit above host UI that floats over the bottom of the app, such as the
+     Sidekick bar. App Bridge sets this property, and it's 0px when nothing
+     is there. */
+  bottom: var(--shopify-safe-area-inset-bottom, 0px);
   z-index: 100;
   display: flex;
   align-items: center;
