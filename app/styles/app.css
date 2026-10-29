@@ -86,7 +86,6 @@
 /* ---------- QR codes list ---------- */
 
 .qr-list-page {
-  font-family: var(--qr-font-family);
   /* Leave room for the sticky action bar */
   padding-bottom: 72px;
 }
@@ -155,10 +154,6 @@
 }
 
 /* ---------- Settings ---------- */
-
-.settings-page {
-  font-family: var(--qr-font-family);
-}
 
 .settings-header {
   background: var(--qr-brand);
