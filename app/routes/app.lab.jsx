@@ -66,8 +66,23 @@ export default function Lab() {
   const [name, setName] = useState(savedName);
   const isDirty = name !== savedName;
 
+  const defaultFilters = { query: "", destination: "all", sort: "newest" };
+  const [filters, setFilters] = useState(defaultFilters);
+  const hasActiveFilters =
+    filters.query !== "" ||
+    filters.destination !== "all" ||
+    filters.sort !== defaultFilters.sort;
+
   const saveBarRef = useRef(null);
   const modalRef = useRef(null);
+
+  function updateFilters(changes) {
+    setFilters((current) => ({ ...current, ...changes }));
+  }
+
+  function clearFilters() {
+    setFilters(defaultFilters);
+  }
 
   function handleSave(e) {
     e.preventDefault();
@@ -120,6 +135,40 @@ export default function Lab() {
               <s-option value="most-scans">Most scans</s-option>
             </s-select>
           </s-stack>
+        </s-section>
+
+        {/* Same markup as FilterBar in app._index.jsx, without the wrapper div */}
+        <s-section>
+          <s-grid gridTemplateColumns="2fr 1fr 1fr auto" gap="base" alignItems="end">
+            <s-search-field
+              label="Search QR codes"
+              labelAccessibilityVisibility="exclusive"
+              placeholder="Search by title"
+              value={filters.query}
+              onInput={(e) => updateFilters({ query: e.currentTarget.value })}
+            />
+            <s-select
+              label="Destination"
+              value={filters.destination}
+              onInput={(e) => updateFilters({ destination: e.currentTarget.value })}
+            >
+              <s-option value="all">All destinations</s-option>
+              <s-option value="product">Product page</s-option>
+              <s-option value="cart">Checkout</s-option>
+            </s-select>
+            <s-select
+              label="Sort by"
+              icon="sort"
+              value={filters.sort}
+              onInput={(e) => updateFilters({ sort: e.currentTarget.value })}
+            >
+              <s-option value="newest">Newest</s-option>
+              <s-option value="most-scans">Most scans</s-option>
+            </s-select>
+            <s-button disabled={!hasActiveFilters} onClick={clearFilters}>
+              Clear filters
+            </s-button>
+          </s-grid>
         </s-section>
 
         <s-section heading="Menu, modal and popover">
