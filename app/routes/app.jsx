@@ -17,7 +17,10 @@ export default function App() {
   const { apiKey } = useLoaderData();
 
   return (
-    <AppProvider embedded apiKey={apiKey}>
+    <AppProvider
+      apiKey={apiKey}
+      polarisUrl="https://cdn.shopify.com/shopifycloud/polaris-2.0-rc.js"
+    >
       <s-app-nav>
         <s-link href="/app">Home</s-link>
         <s-link href="/app/settings">Settings</s-link>

@@ -128,8 +128,9 @@ export default function QRCodeForm() {
     submit(data, { method: "post" });
   }
 
-  function handleDelete(e) {
+  async function handleDelete(e) {
     e.preventDefault();
+    await window.shopify.saveBar.hide("qr-code-form");
     submit(
       { action: "delete", metaobjectId: initialFormState.id },
       { method: "post" },
@@ -181,14 +182,19 @@ export default function QRCodeForm() {
                 label="Title"
                 details="Only store staff can see this title"
                 error={errors.title}
-                autoComplete="off"
+                autocomplete="off"
                 name="title"
                 value={formState.title}
                 onInput={(e) =>
                   setFormState({ ...formState, title: e.target.value })
                 }
               ></s-text-field>
-              <s-stack gap="500" align="space-between" blockAlign="start">
+              <s-stack
+                direction="inline"
+                gap="large-100"
+                justifyContent="space-between"
+                alignItems="start"
+              >
                 <s-select
                   name="destination"
                   label="Scan destination"
@@ -212,7 +218,6 @@ export default function QRCodeForm() {
                 </s-select>
                 {initialFormState.destinationUrl ? (
                   <s-link
-                    variant="plain"
                     href={initialFormState.destinationUrl}
                     target="_blank"
                   >
@@ -227,7 +232,6 @@ export default function QRCodeForm() {
                     <s-link
                       onClick={removeProduct}
                       accessibilityLabel="Remove the product from this QR Code"
-                      variant="tertiary"
                       tone="neutral"
                     >
                       Clear
@@ -288,10 +292,10 @@ export default function QRCodeForm() {
                   </s-button>
                 )}
                 {errors.productId ? (
-                  <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                  <s-stack direction="inline" gap="small-400" alignItems="center">
                     <s-icon type="alert-circle" tone="critical" size="small" />
-                    <s-text tone="critical" variant="bodySm">{errors.productId}</s-text>
-                  </div>
+                    <s-text tone="critical" fontSize="small">{errors.productId}</s-text>
+                  </s-stack>
                 ) : null}
               </s-stack>
             </s-stack>
